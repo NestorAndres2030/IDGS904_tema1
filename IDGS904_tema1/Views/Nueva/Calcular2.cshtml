@@ -1,0 +1,34 @@
+﻿@model IDGS904_tema1.Models.Puntos
+
+@{
+    ViewBag.Title = "Calcular2";
+}
+
+<h2>Calcular2</h2>
+
+<div class="container">
+    <form action="/Puntos/Resultado" method="post">
+        <!-- Campos del formulario -->
+        <div class="row">
+            <label for="x1">Coordenada X1:</label>
+            <input type="number" id="x1" name="x1" required>
+        </div>
+        <div class="row">
+            <label for="y1">Coordenada Y1:</label>
+            <input type="number" id="y1" name="y1" required>
+        </div>
+        <div class="row">
+            <label for="x2">Coordenada X2:</label>
+            <input type="number" id="x2" name="x2" required>
+        </div>
+        <div class="row">
+            <label for="y2">Coordenada Y2:</label>
+            <input type="number" id="y2" name="y2" required>
+        </div>
+        <div class="row">
+            <input type="submit" value="Calcular">
+        </div>
+    </form>
+
+ 
+</div>

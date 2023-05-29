@@ -1,0 +1,86 @@
+﻿@model IDGS904_tema1.Models.Palabras
+@{
+    ViewBag.Title = "Palabras";
+}
+
+<h2>View</h2>
+
+@using (Html.BeginForm("Guardar", "Palabras", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Palabras</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ingles, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ingles, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ingles, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.espanol, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.espanol, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.espanol, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Buscar", "Buscar", "Palabras", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="button" value="Mostrar" class="btn btn-default" id="btnMostrarTabla" />
+    </div>
+</div>
+
+<table class="table" id="tablaPalabras" style="display: none;">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Inglés</th>
+            <th scope="col">Español</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.Archivo != null)
+        {
+            foreach (string tem in ViewBag.Archivo)
+            {
+                <tr>
+                    @foreach (string item in tem.Split(','))
+                    {
+                        <td>@item</td>
+                    }
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#btnMostrarTabla").click(function () {
+                $("#tablaPalabras").toggle();
+            });
+        });
+    </script>
+
+}
